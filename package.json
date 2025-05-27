@@ -9,7 +9,9 @@
     "lint": "eslint . --fix --max-warnings=0",
     "preview": "vite preview",
     "format": "prettier . --write",
-    "prepare": "husky"
+    
+    "prepare": "husky",
+     "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
