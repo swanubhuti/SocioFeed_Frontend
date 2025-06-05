@@ -1,5 +1,22 @@
 @import 'tailwindcss';
 
-html.dark {
-	/* You could add a background here if desired, but Tailwind handles it */
+html,
+body,
+#root {
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: system-ui, sans-serif;
+	background-color: white;
+	color: #1f2937; /* Tailwind gray-800 */
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+}
+
+html.dark,
+html.dark body,
+html.dark #root {
+	background-color: #0f172a; /* Tailwind slate-900 */
+	color: #e2e8f0; /* Tailwind slate-200 */
 }

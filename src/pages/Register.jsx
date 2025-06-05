@@ -15,7 +15,7 @@ export default function Register() {
     <div className="flex items-center justify-center min-h-screen px-4 bg-white dark:bg-slate-900 transition-colors">
       <Card className="w-full max-w-md shadow-lg">
         <CardContent>
-          <Typography variant="h5" align="center" className="mb-4 text-sky-800 dark:text-white font-bold">
+          <Typography variant="h5" align="center" className="mb-4 text-purple-800 dark:text-white font-bold">
             Create Account
           </Typography>
           <LoginIllustration />
