@@ -89,7 +89,7 @@ const navigate = useNavigate();
   const isPostButtonDisabled = isSubmittingPost || (isContentTrulyEmpty && images.length === 0);
 
   return (
-    <div className="max-w-xl mx-auto mt-6 p-6 rounded-lg shadow-xl bg-gradient-to-br from-white to-purple-50 dark:from-slate-800 dark:to-slate-700 transition-colors duration-300 border border-purple-200 dark:border-purple-900">
+    <div className="max-w-screen-sm sm:max-w-screen-md lg:max-w-xl mx-auto mt-4 sm:mt-6 p-4 sm:p-6rounded-lg shadow-xl bg-gradient-to-br from-white to-purple-50 dark:from-slate-800 dark:to-slate-700 transition-colors duration-300 border border-purple-200 dark:border-purple-900">
       <div className="flex items-center space-x-4 mb-4">
         <img
           src={userProfilePic}
