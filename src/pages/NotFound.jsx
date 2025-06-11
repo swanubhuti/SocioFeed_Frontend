@@ -10,8 +10,7 @@ const PageNotFound = () => {
 				className="
                 w-full max-w-sm mb-8
                 filter invert-[30%] sepia-[80%] saturate-[1500%] hue-rotate-[270deg] brightness-[90%] contrast-[90%]
-                md:max-w-md lg:max-w-lg
-            "
+                md:max-w-md lg:max-w-lg"
 			>
 				<img src={svg} alt="Page Not Found" className="w-full h-auto block" />
 			</div>
