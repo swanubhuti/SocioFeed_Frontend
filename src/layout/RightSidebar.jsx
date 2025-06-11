@@ -1,15 +1,10 @@
-
 import { Link } from 'react-router-dom';
 import { BsChat } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
-import {
-	useGetFollowListQuery,
-
-} from '../features/user/userApi';
-
+import { useGetFollowListQuery } from '../features/user/userApi';
 
 const UserCardMini = ({ user, action }) => (
-	<div className="flex items-center justify-between p-2 rounded hover:bg-gray-100 dark:hover:bg-slate-700">
+	<div className="flex items-center justify-between p-2 rounded hover:bg-purple-100 dark:hover:bg-slate-700">
 		<Link to={`/profile/${user.username}`} className="flex items-center gap-2">
 			<img
 				src={user.profilePic || '/default-avatar.jpg'}
@@ -33,9 +28,9 @@ export default function RightSidebar() {
 		});
 
 	return (
-		<aside className="hidden lg:block w-72 p-4 bg-purple-50 dark:bg-slate-900 border-l dark:border-slate-700">
+		<aside className="hidden lg:block w-71 p-4 bg-purple-50 dark:bg-slate-900  dark:border-slate-700">
 			<div>
-				<h2 className="font-semibold text-gray-900 dark:text-white mb-2">
+				<h2 className="font-bold text-2xl mx-2  text-purple-900 dark:text-white mb-2">
 					Friends
 				</h2>
 				{loadingFollowing ? (
@@ -47,8 +42,8 @@ export default function RightSidebar() {
 							user={user}
 							action={
 								<Link
-									to={`/chat/${user.id}`}
-									className="text-purple-600 hover:text-purple-800"
+									to={`/chat?userId=${user.id}`}
+									className="text-purple-800 text-xl hover:text-purple-900"
 								>
 									<BsChat />
 								</Link>
