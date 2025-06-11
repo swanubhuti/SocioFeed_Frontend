@@ -6,7 +6,7 @@ export default function ConversationList({ activeId }) {
   const { data, isLoading, error } = useGetConversationsQuery(undefined, { pollingInterval: 5000 });
 
   const authUser = useSelector((state) => state.auth.user);
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate(); 
 
   if (isLoading) return <div className="p-4">Loading conversations...</div>;
   if (error) return <div className="p-4 text-red-500">Error loading chats</div>;
@@ -28,7 +28,7 @@ export default function ConversationList({ activeId }) {
           return (
             <li
               key={conv.id}
-              onClick={() => navigate(`/chat?userId=${otherUser.id}`)} // Navigate to chat
+              onClick={() => navigate(`/chat?userId=${otherUser.id}`)} 
               className={`flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-purple-100 dark:hover:bg-slate-700 ${
                 activeId === conv.id ? 'bg-purple-100 dark:bg-slate-700' : ''
               }`}

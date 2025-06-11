@@ -15,9 +15,9 @@ export default function MessageWindow({ conversation }) {
 	// Fetch initial messages
 	const { data } = useGetMessagesQuery(conversation?.id, {
 		skip: !conversation?.id,
-		pollingInterval: 5000, // ✅ Automatically refetch messages every 5 seconds
+		pollingInterval: 5000, 
 	});
-	// Maintain messages in local state for dynamic updates
+
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {
@@ -28,7 +28,6 @@ export default function MessageWindow({ conversation }) {
 
 	const [sendMessage] = useSendMessageMutation();
 
-	// 🔌 WebSocket Setup
 	useEffect(() => {
 		if (!authUser?.id || !conversation?.id) return;
 
@@ -37,7 +36,7 @@ export default function MessageWindow({ conversation }) {
 
 		socket.on('receiveMessage', (newMsg) => {
 			if (newMsg.conversationId === conversation.id) {
-				setMessages((prevMessages) => [...prevMessages, newMsg]); // ✅ Append messages dynamically
+				setMessages((prevMessages) => [...prevMessages, newMsg]); 
 			}
 		});
 
@@ -46,7 +45,6 @@ export default function MessageWindow({ conversation }) {
 		};
 	}, [conversation?.id]);
 
-	// Auto-scroll to last message
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
 	}, [messages]);
@@ -63,10 +61,8 @@ export default function MessageWindow({ conversation }) {
 			createdAt: new Date().toISOString(),
 		};
 
-		// Update UI instantly
 		setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-		// Send message to backend
 		await sendMessage({
 			receiverId:
 				conversation.user1.id === authUser.id
@@ -89,7 +85,7 @@ export default function MessageWindow({ conversation }) {
 
 	if (!conversation) {
 		return (
-			<div className="flex-1 p-65 text-center text-gray-500 dark:text-white">
+			<div className="flex-1 p-65 text-center bg-purple-50 text-gray-500 dark:text-white">
 				Select a chat to start messaging
 			</div>
 		);
@@ -97,7 +93,6 @@ export default function MessageWindow({ conversation }) {
 
 	return (
 		<div className="flex-1 flex flex-col">
-			{/* Header */}
 			<div className="px-4 py-2 border-b border-gray-400 dark:border-slate-600 bg-purple-50 dark:bg-slate-800 flex items-center space-x-3">
 				<Link
 					to={`/profile/${conversation.user1.id === authUser.id ? conversation.user2.username : conversation.user1.username}`}
@@ -120,7 +115,6 @@ export default function MessageWindow({ conversation }) {
 				</h2>
 			</div>
 
-			{/* Messages */}
 			<div className="flex-1 overflow-y-auto p-4 space-y-2 bg-purple-50 dark:bg-slate-900">
 				{messages.map((msg) => (
 					<div
@@ -128,7 +122,7 @@ export default function MessageWindow({ conversation }) {
 						className={`flex flex-col ${msg.senderId === authUser.id ? 'items-end' : 'items-start'}`}
 					>
 						<div
-							className={`max-w-xs px-3 py-2 rounded-lg ${msg.senderId === authUser.id ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-900'}`}
+							className={`max-w-xs px-3 py-2 rounded-lg ${msg.senderId === authUser.id ? 'bg-purple-600 text-white' : 'bg-purple-200 text-gray-900'}`}
 						>
 							{msg.content}
 						</div>
@@ -143,8 +137,6 @@ export default function MessageWindow({ conversation }) {
 				))}
 				<div ref={bottomRef} />
 			</div>
-
-			{/* Input */}
 			<form
 				onSubmit={handleSend}
 				className="p-4 flex gap-2 bg-purple-50 dark:bg-slate-800"

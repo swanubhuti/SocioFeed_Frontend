@@ -16,7 +16,7 @@ const MessageInput = ({ conversation, receiverId, onSent }) => {
 
     socket.emit('sendMessage', {
       conversationId: conversation.id,
-      senderId: authUser.id,  // 🔥 Fix: Include sender ID
+      senderId: authUser.id,  
       receiverId,
       content: message,
     });
