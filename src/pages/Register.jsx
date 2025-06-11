@@ -7,7 +7,6 @@ export default function Register() {
 		<div className="flex items-center justify-center min-h-screen px-6 bg-gradient-to-br from-purple-50 to-purple-200 dark:from-slate-800 dark:to-slate-900 transition-colors">
 			<Card className="w-full max-w-3xl shadow-xl rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg">
 				<CardContent className="p-0 flex flex-row">
-					{/* Left Section - Full Height Image */}
 					<div className="w-1/2 hidden sm:block">
 						<img
 							src={webp}
@@ -15,8 +14,6 @@ export default function Register() {
 							className="w-full h-full object-cover rounded-l-lg filter hue-rotate-65"
 						/>
 					</div>
-
-					{/* Right Section - Form */}
 					<div className="w-full sm:w-1/2 p-8 flex flex-col justify-center">
 						<Typography
 							variant="h4"
