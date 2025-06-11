@@ -7,7 +7,6 @@ const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);
 
-   // AuthProvider.js
 useEffect(() => {
     let isMounted = true;
 
@@ -29,12 +28,12 @@ useEffect(() => {
         }
     };
 
-    fetchUser(); // Always try once, regardless of isAuthenticated
+    fetchUser(); 
 
     return () => {
         isMounted = false;
     };
-}, [dispatch]); // Dependency array
+}, [dispatch]); 
 
     return children;
 };

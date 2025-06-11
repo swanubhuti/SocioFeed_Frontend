@@ -5,11 +5,10 @@ import { useDispatch } from 'react-redux';
 
 const axiosInstance = axios.create({
 	baseURL: 'http://localhost:8080',
-	withCredentials: true, // Ensures cookies are sent
+	withCredentials: true,
 	headers: { 'Content-Type': 'application/json' },
 });
 
-// Read cookies correctly
 const getCookie = (name) => {
 	const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
 	return match ? match[2] : null;
@@ -40,8 +39,6 @@ axiosInstance.interceptors.response.use(
 				const { data } = await axios.get('http://localhost:8080/api/refresh', {
 					withCredentials: true,
 				});
-
-				// No need to manually set token cookie if backend sets it properly
 				axiosInstance.defaults.headers['Authorization'] =
 					`Bearer ${data.accessToken}`;
 				originalRequest.headers['Authorization'] = `Bearer ${data.accessToken}`;
