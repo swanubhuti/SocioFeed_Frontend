@@ -37,7 +37,7 @@ export default function VerifyAccount() {
 			{status === 'loading' && (
 				<>
 					<CircularProgress className="mb-4" />
-					<Typography variant="h6" className="text-sky-700 dark:text-white">
+					<Typography variant="h6" className="text-purple-700 dark:text-white">
 						Verifying your account...
 					</Typography>
 				</>
