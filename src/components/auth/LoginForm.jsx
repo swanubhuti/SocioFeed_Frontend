@@ -8,6 +8,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import PasswordInput from '../common/PasswordInput';
+import toast from 'react-hot-toast';
 
 export default function LoginForm() {
 	const dispatch = useDispatch();
@@ -27,24 +28,30 @@ export default function LoginForm() {
 		try {
 			const res = await loginUser(data);
 			dispatch(setUser(res.data.user));
+
+			toast.success('Login successful!');
 			navigate('/');
 		} catch (err) {
-			setErrorMsg(err.response?.data?.message || 'Incorrect email or password');
+			const message =
+				err.response?.data?.message || 'Incorrect email or password';
+			toast.error(message);
 		}
 	};
 
 	const handleResetPassword = async () => {
 		try {
 			const res = await forgotPassword({ email: resetEmail });
-			setResetMsg(res.data.message);
+			toast.success(res.data.message);
 		} catch (err) {
-			setResetMsg(err.response?.data?.message || 'Failed to send reset link');
+			const message =
+				err.response?.data?.message || 'Failed to send reset link';
+			toast.error(message);
 		}
 	};
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+			<form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-3">
 				{errorMsg && <p className="text-red-500 text-center">{errorMsg}</p>}
 
 				<Input
@@ -63,13 +70,13 @@ export default function LoginForm() {
 					<button
 						type="button"
 						onClick={() => setOpenReset(true)}
-						className="text-sm text-purple-700 hover:underline"
+						className="text-md text-purple-700 hover:underline"
 					>
 						Forgot Password?
 					</button>
 				</div>
 
-				<Button type="submit" className="w-full">
+				<Button type="submit" className="w-full ">
 					Login
 				</Button>
 
@@ -81,7 +88,6 @@ export default function LoginForm() {
 				</p>
 			</form>
 
-			{/* Forgot Password Dialog */}
 			<Dialog open={openReset} onClose={() => setOpenReset(false)}>
 				<DialogTitle>Reset Password</DialogTitle>
 				<DialogContent className="space-y-4">

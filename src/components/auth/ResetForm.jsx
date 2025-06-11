@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { resetPassword } from '../../features/auth/authAPI';
 import { useState } from 'react';
 import {
-	TextField,
 	Alert,
-	Typography,
 	Dialog,
 	DialogTitle,
 	DialogContent,
@@ -15,7 +13,6 @@ import Button from '../common/Button';
 
 
 export default function ResetForm({ token }) {
-	// 👈 Receive token from props
 	const navigate = useNavigate();
 	const [resetMsg, setResetMsg] = useState('');
 	const {

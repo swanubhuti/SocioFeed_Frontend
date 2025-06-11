@@ -7,6 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import PasswordInput from '../common/PasswordInput';
+import toast from 'react-hot-toast';
 
 export default function RegisterForm() {
 	const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function RegisterForm() {
 	const onSubmit = async (data) => {
 		try {
 			const res = await registerUser(data);
-			alert(res.data.message);
+			toast.success(res.data.message);
 			navigate('/login');
 		} catch (err) {
 			setErrorMsg(err.response?.data?.message || 'Registration failed');
