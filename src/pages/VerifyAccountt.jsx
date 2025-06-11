@@ -44,7 +44,7 @@ export default function VerifyAccount() {
 			)}
 			{status === 'success' && (
 				<Typography className="text-green-600 dark:text-green-400">
-					Account verified! Redirecting to home...
+					Account verified! Redirecting to Feed...
 				</Typography>
 			)}
 			{status === 'error' && (
