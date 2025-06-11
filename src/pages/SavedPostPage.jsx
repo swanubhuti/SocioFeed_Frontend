@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 const SavedPostsPage = () => {
     const authUser = useSelector((state) => state.auth.user);
-
     const { data: savedData, isLoading } = useGetSavedPostsQuery(undefined, {
         skip: !authUser,
     });
