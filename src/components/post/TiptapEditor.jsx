@@ -102,15 +102,6 @@ function MenuBar({ editor }) {
               : "hover:bg-purple-100 dark:hover:bg-purple-700 text-gray-600 dark:text-gray-300"
           }`}
 
-        
-        // <Toggle
-        //   key={index}
-        //   pressed={option.preesed}
-        //   onPressedChange={option.onClick}
-        // >
-        //   {option.icon}
-        // </Toggle>
-        
         >
           {option.icon}
         </button>
