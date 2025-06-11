@@ -11,7 +11,6 @@ import FollowListModal from '../components/profile/FollowListModal';
 import Sidebar from '../layout/Sidebar';
 import Button from '../components/common/Button';
 import LoadingSpinner from '../components/shared/LoadingSpinner';
-
 import toast from 'react-hot-toast';
 
 const ProfilePage = () => {
@@ -39,39 +38,32 @@ const ProfilePage = () => {
 	const user = data?.user;
 	const isOwnProfile = authUser?.username === username;
 
-	 useEffect(() => {
-    if (user && authUser) {
-      // Check if the authUser is following this profile user
-      const isFollowed = user.followers?.some((f) => f.id === authUser.id);
-      setIsFollowing(isFollowed);
-
-      // Set follower and following counts from API data
-      setFollowerCount(data.followerCount ?? user.followers.length);
-      setFollowingCount(data.followingCount ?? user.following.length);
-    }
-  }, [authUser]);
+	useEffect(() => {
+		if (user && authUser) {
+			const isFollowed = user.followers?.some((f) => f.id === authUser.id);
+			setIsFollowing(isFollowed);
+			setFollowerCount(data.followerCount ?? user.followers.length);
+			setFollowingCount(data.followingCount ?? user.following.length);
+		}
+	}, [authUser]);
 
 	const handleFollowToggle = async () => {
-    if (!user) return;
+		if (!user) return;
 
-    try {
-      const response = await followUser(user.id).unwrap();
+		try {
+			const response = await followUser(user.id).unwrap();
+			setIsFollowing(response.following);
+			setFollowerCount(response.followerCount);
+			setFollowingCount(response.followingCount);
 
-      // Update states with the API response counts and following status
-      setIsFollowing(response.following);
-      setFollowerCount(response.followerCount);
-      setFollowingCount(response.followingCount);
-
-      toast.success(
-        response.following ? 'Followed successfully' : 'Unfollowed successfully'
-      );
-
-      // Refetch user data to keep everything synced, if needed
-      await refetch();
-    } catch (error) {
-      toast.error('Failed to update follow status');
-    }
-  };	
+			toast.success(
+				response.following ? 'Followed successfully' : 'Unfollowed successfully'
+			);
+			await refetch();
+		} catch (error) {
+			toast.error('Failed to update follow status');
+		}
+	};
 
 	const openFollowModal = (type) => {
 		setFollowType(type);
@@ -86,11 +78,10 @@ const ProfilePage = () => {
 
 	return (
 		<div className="flex min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
-			<div classname = "fixed">
-			<Sidebar />
+			<div classname="fixed">
+				<Sidebar />
 			</div>
 			<main className="flex-1 pb-10 mt-2 mx-2">
-				{/* Cover & Avatar */}
 				<div className="relative w-full h-30 rounded shadow bg-purple-100 dark:bg-purple-900">
 					<img
 						src={user.profilePic || '/default-avatar.jpg'}
@@ -118,7 +109,6 @@ const ProfilePage = () => {
 							</Button>
 						) : (
 							<Button
-							
 								onClick={handleFollowToggle}
 								className={`mt-4 md:mt-0 sm:ml-4 ${
 									isFollowing
@@ -131,7 +121,6 @@ const ProfilePage = () => {
 						)}
 					</div>
 
-					{/* Stats */}
 					<div className="flex space-x-6 mt-4 text-gray-800 dark:text-slate-200">
 						<span>
 							<strong>{user.posts.length}</strong> posts
@@ -150,8 +139,6 @@ const ProfilePage = () => {
 						</span>
 					</div>
 				</div>
-
-				{/* Tabs */}
 				<div className="border-t mt-6 border-gray-300 dark:border-slate-600">
 					<div className="flex justify-center space-x-6 py-4 text-sm sm:text-base">
 						<button
@@ -218,5 +205,4 @@ const ProfilePage = () => {
 		</div>
 	);
 };
-
 export default ProfilePage;
