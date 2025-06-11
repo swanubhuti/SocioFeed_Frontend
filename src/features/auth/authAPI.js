@@ -10,3 +10,9 @@ export const resetPassword = (data, token) =>
 
 export const verifyAccount = (token) =>
 	axios.get(`/api/verify-account/${token}`);
+export const checkUsernameUniqueness = async (username) => {
+	const response = await axios.get('api/check-username', {
+		params: { username: username },
+	});
+	return response.data;
+};
