@@ -1,6 +1,6 @@
 import LoginForm from '../components/auth/LoginForm';
 import { Card, CardContent, Typography } from '@mui/material';
-import webp from "../assets/login.webp";
+import webp from '../assets/login.webp';
 
 export default function Login() {
 	return (
@@ -13,7 +13,6 @@ export default function Login() {
 							className="w-full h-full object-cover rounded-l-lg filter hue-rotate-65"
 						/>
 					</div>
-
 					<div className="w-full sm:w-1/2 p-8 flex flex-col justify-center">
 						<Typography
 							variant="h4"
