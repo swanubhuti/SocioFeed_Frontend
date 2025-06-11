@@ -42,10 +42,7 @@ const PostDetail = () => {
     return (
         <div className="flex min-h-screen bg-gray-100 dark:bg-slate-900">
             <Sidebar />
-
-            {/* Main Content Layout */}
             <div className="max-w-4xl mx-auto p-4 mt-15 h-full bg-white dark:bg-slate-800 rounded-md shadow-md flex gap-6">
-                {/* Left Side: Post Content */}
                 <div className="flex-1">
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex gap-3 mt-1 items-center">
@@ -64,7 +61,6 @@ const PostDetail = () => {
                             </div>
                         </div>
 
-                        {/* Delete Button for Author */}
                         {isAuthor && (
                             <button
                                 onClick={handleDelete}
@@ -84,8 +80,6 @@ const PostDetail = () => {
 
                     <PostActions post={post} />
                 </div>
-
-                {/* Right Side: Comments Section */}
                 <div className="w-96 border-l pl-4 border-gray-300 dark:border-slate-600">
                     <CommentsSection
                         postId={post.id}
