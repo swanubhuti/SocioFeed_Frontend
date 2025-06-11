@@ -42,8 +42,14 @@ export const postApi = createApi({
 				'SavedPosts',
 			],
 		}),
+		deletePost: builder.mutation({
+			query: (id) => ({
+				url: `/${id}`,
+				method: 'DELETE',
+			}),
+			invalidatesTags: ['Posts', 'SavedPosts'],
+		}),
 
-		// Add comment
 		addComment: builder.mutation({
 			query: ({ postId, content }) => ({
 				url: `/${postId}/comments`,
@@ -85,7 +91,8 @@ export const postApi = createApi({
 
 		// Get user's saved posts
 		getSavedPosts: builder.query({
-			query: ({ page = 1, limit = 10 }) => `/saved?page=${page}&limit=${limit}`,
+			query: ({ page = 1, limit = 10 } = {}) =>
+				`/saved?page=${page}&limit=${limit}`,
 			providesTags: ['SavedPosts'],
 		}),
 
@@ -107,4 +114,5 @@ export const {
 	useToggleSavePostMutation,
 	useGetSavedPostsQuery,
 	useGetUserPostsQuery,
+	useDeletePostMutation,
 } = postApi;
