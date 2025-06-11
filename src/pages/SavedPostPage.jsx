@@ -15,7 +15,7 @@ const SavedPostsPage = () => {
     if (!savedData?.posts.length)
         return (
             <p className="text-center text-gray-500 mt-10 dark:text-slate-400">
-                No saved posts yet.
+                No any saved posts yet.
             </p>
         );
 
